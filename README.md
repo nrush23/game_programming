@@ -15,7 +15,11 @@ Hello! Welcome to Intro to Game Programming! This is where we will post material
 
 ### Week 1
 - Introduction, favorite games, hello world
-- Overview of Unity, Unreal, Babylon.js, 3D modelling, more hello world
+- Overview of Unity, Unreal, Babylon.js, 3D modelling, material basics
+
+### Week 2
+- Cube introduction, transforms, Babylon.js basics
+- Overview of free modelling sites
 
 # Contact information
 
