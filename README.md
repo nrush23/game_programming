@@ -24,4 +24,4 @@ Hello! Welcome to Intro to Game Programming! This is where we will post material
 # Contact information
 
 - Email: ncr7500@nyu.edu
-- Discord: TBA
+- Discord: https://discord.gg/wuY47S48
