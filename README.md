@@ -4,7 +4,7 @@
 Hello! Welcome to Intro to Game Programming! This is where we will post materials and excercises, if the format changes at all I'll let you guys know.
 
 # LINKS FOR TODAY'S CLASS!!!!
-
+### Main Excercise:
 - Blank Playground: https://playground.babylonjs.com/#3EO62V#1
 - Assets Directory: https://raw.githubusercontent.com/nrush23/game_programming/main/week1/assets/
 - Golden Patty: golden_patty.glb
