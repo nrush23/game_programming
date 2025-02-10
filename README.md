@@ -10,6 +10,14 @@ Hello! Welcome to Intro to Game Programming! This is where we will post material
 - Golden Patty: golden_patty.glb
 - Trevor Phillips: trevor_phillips.glb
 - Raiden: raiden.glb
+- Capybara: capy.glb
+- Free Fire: free_fire.glb
+- Noot Noot: noot_noot.glb
+- Penguin: penguin.glb
+- Roblox: roblox.glb
+- Sonci: sonic.glb
+- Spiderman: spiderman.glb
+- Toothless: toothless.glb
 
 # Objectives
 
