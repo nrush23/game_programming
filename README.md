@@ -11,7 +11,7 @@ Hello! Welcome to Intro to Game Programming! This is where we will post material
 - Trevor Phillips: trevor_phillips.glb
 - Raiden: raiden.glb
 
-  ### Extra models:
+### Extra models:
 - Capybara: capy.glb
 - Free Fire: free_fire.glb
 - Noot Noot: noot_noot.glb
