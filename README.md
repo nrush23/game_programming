@@ -36,9 +36,9 @@ Hello! Welcome to Intro to Game Programming! This is where we will post material
 - Overview of Unity, Unreal, Babylon.js, 3D modelling, material basics
 
 ### Week 2
-- Cube introduction, transforms, Babylon.js basics
-- Overview of free modelling sites
-
+- Trevor Phillips, Glow Layer, Color Changes, Babylon.js basics
+- More import model things, music, cube introduction, transforms
+  
 # Contact information
 
 - Email: ncr7500@nyu.edu
