@@ -22,6 +22,11 @@ Hello! Welcome to Intro to Game Programming! This is where we will post material
 - Toothless: toothless.glb
 - Red Dinosaur: carno.glb
 - Spinosaurus: spino.glb
+- Tyrannosaurus: tyranno.glb
+- Stegosaurus: stego.glb
+- Allosaurus: allosaurus.glb
+- Raptor: raptor.glb
+- Tricera: tricera.glb
 
 # Objectives
 
