@@ -20,6 +20,8 @@ Hello! Welcome to Intro to Game Programming! This is where we will post material
 - Sonci: sonic.glb
 - Spiderman: spiderman.glb
 - Toothless: toothless.glb
+- Red Dinosaur: carno.glb
+- Spinosaurus: spino.glb
 
 # Objectives
 
