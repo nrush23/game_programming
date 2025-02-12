@@ -8,11 +8,11 @@ Hello! Welcome to Intro to Game Programming! This is where we will post material
 - Blank Playground: https://playground.babylonjs.com/#3EO62V#1
 - Trevor Phillips Playground: https://playground.babylonjs.com/#3EO62V#7
 - Assets Directory: https://raw.githubusercontent.com/nrush23/game_programming/main/week1/assets/
-- Golden Patty: golden_patty.glb
-- Trevor Phillips: trevor_phillips.glb
-- Raiden: raiden.glb
 
 ### Extra models:
+- Trevor Phillips: trevor_phillips.glb
+- Golden Patty: golden_patty.glb
+- Raiden: raiden.glb
 - Capybara: capy.glb
 - Free Fire: free_fire.glb
 - Noot Noot: noot_noot.glb
@@ -46,6 +46,9 @@ Hello! Welcome to Intro to Game Programming! This is where we will post material
 ### Week 2
 - Trevor Phillips, Glow Layer, Color Changes, Babylon.js basics
 - More import model things, music, cube introduction, transforms
+
+### Week 3
+- Import a character, make it walk around a map
   
 # Contact information
 
