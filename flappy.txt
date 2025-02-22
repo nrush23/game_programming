@@ -44,7 +44,11 @@ function initialize(scene) {
 
 function createPhysics(scene) {
     // Create our sphere and ground
-
+    scene.onNewMeshAddedObservable.add((mesh) => {
+        mesh.renderOutline = true;
+        // mesh.outlineWidth = 0.0005; // Optional: adjust outline thickness
+        mesh.outlineColor = BABYLON.Color3.Black();
+    });
     // BABYLON.SceneLoader.ImportMesh("", "https://raw.githubusercontent.com/nrush23/game_programming/main/assets/", "flappy_fix3.glb");
     const promise = BABYLON.SceneLoader.ImportMeshAsync("", "https://raw.githubusercontent.com/nrush23/game_programming/main/assets/", "flappy_fix3.glb", scene);
     promise.then((result) => {
@@ -94,6 +98,7 @@ function createPhysics(scene) {
     var groundAggregate = new BABYLON.PhysicsAggregate(ground, BABYLON.PhysicsShapeType.BOX, { mass: 0 }, scene);
     var roofAggregate = new BABYLON.PhysicsAggregate(roof, BABYLON.PhysicsShapeType.BOX, { mass: 0 }, scene);
     ground.isVisible = false;
+    roof.isVisible = false;
 }
 
 function setupInput(scene) {
@@ -164,7 +169,7 @@ function createPipe(scene, height) {
     pipes.push(pipe);
 }
 
-function createAccessory(scene, height,bottom) {
+function createAccessory(scene, height, bottom) {
     var yellow = BABYLON.MeshBuilder.CreateCylinder("y1", { height: 0.25, diameter: 2.25 }, scene);
     if (bottom) {
         yellow.position.y += 0.25 / 2;
