@@ -9,10 +9,9 @@ var best = 0;
 const MIN_HEIGHT = -7.5;
 const MAX_HEIGHT = 10;
 const GAP_WIDTH = 3;
-// const green = new BABYLON.StandardMaterial("green", scene);
-// green.diffuseColor = new BABYLON.Color3(0,1,0);
-// const red = new BABYLON.StandardMaterial("red", scene);
-// red.diffuseColor = new BABYLON.Color3(1,0,0);
+var SPAWN_TIME = 4000;
+
+
 var createScene = function () {
     // This creates a basic Babylon Scene object (non-mesh)
     var scene = new BABYLON.Scene(engine);
@@ -129,7 +128,7 @@ function gameLogic(scene) {
 
     setInterval(() => {
         createPipe(scene, Math.floor(Math.random() * (MAX_HEIGHT + 1)));
-    }, 4000);
+    }, SPAWN_TIME);
 
 };
 
@@ -141,11 +140,12 @@ function createPipe(scene, height) {
     //Now make a transform node to hold all components
     var pipe = new BABYLON.TransformNode("p1", scene);
 
+    //Don't make the bottom if the height is too small
     if (height > GAP_WIDTH) {
         //Create the bottom cylinder so it has the given height and position its center at its radius
         var bot = BABYLON.MeshBuilder.CreateCylinder("c1", { height: height, diameter: 2 }, scene)
         bot.position = new BABYLON.Vector3(0, MIN_HEIGHT + bot_radius, 0);
-        var y_bot = createAccessory(scene, bot_radius);
+        var y_bot = createAccessory(scene, bot_radius, true);
         y_bot.parent = bot;
         bot.material = green;
         bot.parent = pipe;
@@ -154,27 +154,24 @@ function createPipe(scene, height) {
     //Create the top cylinder so it has the remaining height and center it its length from the top
     var top = BABYLON.MeshBuilder.CreateCylinder("c1_top", { height: top_radius * 2, diameter: 2 }, scene);
     top.position = new BABYLON.Vector3(0, MAX_HEIGHT - top_radius, 0);
-    var y_top = createAccessory(scene, -top_radius);
+    var y_top = createAccessory(scene, -top_radius, false);
     y_top.parent = top;
-
     top.parent = pipe;
     top.material = green;
+
+    //Set position and add to our pipe array
     pipe.position = new BABYLON.Vector3(12, 0, 0);
-
-    //Set the colors and add our pipe to our array
-
-
     pipes.push(pipe);
 }
 
-function createAccessory(scene, height) {
+function createAccessory(scene, height,bottom) {
     var yellow = BABYLON.MeshBuilder.CreateCylinder("y1", { height: 0.25, diameter: 2.25 }, scene);
-    if (height < 0) {
+    if (bottom) {
         yellow.position.y += 0.25 / 2;
     } else {
         yellow.position.y -= 0.25 / 2;
     }
-    yellow.position.y = height + 0.25 / 2;
+    yellow.position.y += height
     yellow.material = red;
     return yellow;
 }
