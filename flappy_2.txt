@@ -1,0 +1,158 @@
+var inputMap = {};
+var pipes = [];
+var sphere;
+var jump = false;
+var green;
+var red;
+var score = 0;
+var best = 0;
+// const green = new BABYLON.StandardMaterial("green", scene);
+// green.diffuseColor = new BABYLON.Color3(0,1,0);
+// const red = new BABYLON.StandardMaterial("red", scene);
+// red.diffuseColor = new BABYLON.Color3(1,0,0);
+var createScene = function () {
+    // This creates a basic Babylon Scene object (non-mesh)
+    var scene = new BABYLON.Scene(engine);
+
+    createPhysics(scene);
+    initialize(scene);
+    setupInput(scene);
+
+    gameLogic(scene);
+    createPipe(scene);
+    return scene;
+};
+
+function initialize(scene) {
+    green = new BABYLON.StandardMaterial("green", scene);
+    green.diffuseColor = new BABYLON.Color3(0, 1, 0);
+    red = new BABYLON.StandardMaterial("red", scene);
+    red.diffuseColor = new BABYLON.Color3(0.85, 1, 0);
+    var camera = new BABYLON.UniversalCamera("camera1", new BABYLON.Vector3(0, 1, -20), scene);
+    // camera.inputs.removeByType("FreeCameraMouseInput");
+    // camera.inputs.removeByType("FreeCameraKeyboardMoveInput");
+    camera.attachControl(canvas, true);
+    // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
+    var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
+
+    // Default intensity is 1. Let's dim the light a small amount
+    light.intensity = 0.7;
+}
+
+function createPhysics(scene) {
+    // Create our sphere and ground
+
+    // BABYLON.SceneLoader.ImportMesh("", "https://raw.githubusercontent.com/nrush23/game_programming/main/assets/", "flappy_fix3.glb");
+    const promise = BABYLON.SceneLoader.ImportMeshAsync("", "https://raw.githubusercontent.com/nrush23/game_programming/main/assets/", "flappy_fix3.glb", scene);
+    promise.then((result) => {
+        const importedMesh = result.meshes[0];
+        importedMesh.rotationQuaternion = BABYLON.Quaternion.FromEulerAngles(Math.PI, Math.PI / 2, 0);
+        importedMesh.position = new BABYLON.Vector3(-6, 4, 0);
+        const boundingInfo = importedMesh.getBoundingInfo();
+        const radius = boundingInfo.boundingSphere.radiusWorld;
+
+        importedMesh.body = new BABYLON.PhysicsBody(importedMesh, BABYLON.PhysicsMotionType.DYNAMIC, false, scene);
+        importedMesh.body.setMassProperties({ mass: 0.6 });
+
+        const importedShape = new BABYLON.PhysicsShapeSphere(new BABYLON.Vector3(0, 0, 0), radius, scene);
+        importedShape.material = { friction: 1, restitution: 0 };
+
+        importedMesh.body.shape = importedShape;
+        sphere = importedMesh;
+
+        scene.onBeforeRenderObservable.add(() => {
+            if (sphere && sphere.body) {
+                const velocityY = sphere.body.getLinearVelocity().y;
+                const maxDipAngle = Math.PI / 3; // 30 degrees max
+
+                // Calculate dip angle based on vertical velocity
+                let dipAngle = BABYLON.Scalar.Clamp(-velocityY * 0.2, -maxDipAngle, maxDipAngle);
+
+                // Create a quaternion for the dip rotation around X-axis
+                let targetQuaternion = BABYLON.Quaternion.FromEulerAngles(dipAngle, Math.PI / 2, 0);
+
+                sphere.body.transformNode.rotationQuaternion = targetQuaternion;
+            }
+        });
+
+    });
+
+    var ground = BABYLON.MeshBuilder.CreateGround("ground", { width: 30, height: 10 }, scene);
+    ground.position.y = -5.5;
+
+    var roof = BABYLON.MeshBuilder.CreateGround("roof", { width: 30, height: 10 }, scene);
+    roof.position.y = 10;
+    // Initialize physics
+    var hk = new BABYLON.HavokPlugin();
+    // enable physics in the scene with a gravity
+    scene.enablePhysics(new BABYLON.Vector3(0, -4.6, 0), hk);
+
+    // Create a static box shape.
+    var groundAggregate = new BABYLON.PhysicsAggregate(ground, BABYLON.PhysicsShapeType.BOX, { mass: 0 }, scene);
+    var roofAggregate = new BABYLON.PhysicsAggregate(roof, BABYLON.PhysicsShapeType.BOX, { mass: 0 }, scene);
+}
+
+function setupInput(scene) {
+    scene.actionManager = new BABYLON.ActionManager(scene);
+
+    scene.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnKeyDownTrigger, (evt) => {
+        inputMap[evt.sourceEvent.key] = evt.sourceEvent.type == "keydown";
+    }));
+
+    scene.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnKeyUpTrigger, (evt) => {
+        inputMap[evt.sourceEvent.key] = evt.sourceEvent.type == "keydown";
+    }));
+}
+
+function gameLogic(scene) {
+    scene.onPointerDown = function () {
+        sphere.body.applyImpulse(new BABYLON.Vector3(0, 1.5, 0), sphere.absolutePosition);
+    }
+    scene.onBeforeRenderObservable.add(() => {
+        for (let i = pipes.length - 1; i >= 0; i--){
+            let pipe = pipes[i];
+            pipe.position.x -= 0.02;
+
+            if(pipe.position.x < -15){
+                pipe.dispose()
+                pipes.splice(i, 1);
+                score += 1
+                console.log(score)
+            }
+        }
+    })
+};
+
+function createPipe(scene) {
+    var bot = BABYLON.MeshBuilder.CreateCylinder("c1", { height: 2, diameter: 2 }, scene)
+    bot.position = new BABYLON.Vector3(0, -4.5, 0);
+
+    var y_bot = createAccessory(scene, 1);
+    y_bot.parent = bot;
+    var top = BABYLON.MeshBuilder.CreateCylinder("c1_top", { height: 11.5, diameter: 2 }, scene);
+    top.position = new BABYLON.Vector3(0, 4.25, 0);
+    var y_top = createAccessory(scene, -5.75);
+    y_top.parent = top;
+    var pipe = new BABYLON.TransformNode("p1", scene);
+    bot.parent = pipe;
+    top.parent = pipe;
+    bot.material = green;
+    top.material = green;
+
+    pipes.push(pipe);
+    // scene.onBeforeRenderObservable.add(()=>{
+    //     pipe.position.x -= 0.02;
+    // })
+}
+
+function createAccessory(scene, height) {
+    var yellow = BABYLON.MeshBuilder.CreateCylinder("y1", { height: 0.25, diameter: 2.25 }, scene);
+    if (height < 0) {
+        yellow.position.y += 0.25 / 2;
+    } else {
+        yellow.position.y -= 0.25 / 2;
+    }
+    yellow.position.y = height + 0.25 / 2;
+    yellow.material = red;
+    return yellow;
+}
