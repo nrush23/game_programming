@@ -6,8 +6,9 @@ var green;
 var red;
 var score = 0;
 var best = 0;
-const MIN_HEIGHT = -5.5;
+const MIN_HEIGHT = -7.5;
 const MAX_HEIGHT = 10;
+const GAP_WIDTH = 3;
 // const green = new BABYLON.StandardMaterial("green", scene);
 // green.diffuseColor = new BABYLON.Color3(0,1,0);
 // const red = new BABYLON.StandardMaterial("red", scene);
@@ -81,7 +82,7 @@ function createPhysics(scene) {
     });
 
     var ground = BABYLON.MeshBuilder.CreateGround("ground", { width: 30, height: 10 }, scene);
-    ground.position.y = -5.5;
+    ground.position.y = MIN_HEIGHT;
 
     var roof = BABYLON.MeshBuilder.CreateGround("roof", { width: 30, height: 10 }, scene);
     roof.position.y = 10;
@@ -113,11 +114,11 @@ function gameLogic(scene) {
         sphere.body.applyImpulse(new BABYLON.Vector3(0, 1.5, 0), sphere.absolutePosition);
     }
     scene.onBeforeRenderObservable.add(() => {
-        for (let i = pipes.length - 1; i >= 0; i--){
+        for (let i = pipes.length - 1; i >= 0; i--) {
             let pipe = pipes[i];
             pipe.position.x -= 0.02;
 
-            if(pipe.position.x < -15){
+            if (pipe.position.x < -15) {
                 pipe.dispose()
                 pipes.splice(i, 1);
                 score += 1
@@ -126,7 +127,7 @@ function gameLogic(scene) {
         }
     });
 
-    setInterval(()=>{
+    setInterval(() => {
         createPipe(scene, Math.floor(Math.random() * (MAX_HEIGHT + 1)));
     }, 4000);
 
@@ -135,28 +136,33 @@ function gameLogic(scene) {
 function createPipe(scene, height) {
     //Calculate our radius from the centers since their origins are in the middle of the mesh
     const bot_radius = height / 2;
-    const top_radius = (MAX_HEIGHT + Math.abs(MIN_HEIGHT) - height - 2)/2;
-
-    //Create the bottom cylinder so it has the given height and position its center at its radius
-    var bot = BABYLON.MeshBuilder.CreateCylinder("c1", { height: height, diameter: 2 }, scene)
-    bot.position = new BABYLON.Vector3(10, MIN_HEIGHT + bot_radius, 0);
-    var y_bot = createAccessory(scene, bot_radius);
-    y_bot.parent = bot;
-
-    //Create the top cylinder so it has the remaining height and center it its length from the top
-    var top = BABYLON.MeshBuilder.CreateCylinder("c1_top", { height: top_radius * 2, diameter: 2 }, scene);
-    top.position = new BABYLON.Vector3(10, MAX_HEIGHT - top_radius, 0);
-    var y_top = createAccessory(scene, -top_radius);
-    y_top.parent = top;
+    const top_radius = (MAX_HEIGHT + Math.abs(MIN_HEIGHT) - height - GAP_WIDTH) / 2;
 
     //Now make a transform node to hold all components
     var pipe = new BABYLON.TransformNode("p1", scene);
-    bot.parent = pipe;
+
+    if (height > GAP_WIDTH) {
+        //Create the bottom cylinder so it has the given height and position its center at its radius
+        var bot = BABYLON.MeshBuilder.CreateCylinder("c1", { height: height, diameter: 2 }, scene)
+        bot.position = new BABYLON.Vector3(0, MIN_HEIGHT + bot_radius, 0);
+        var y_bot = createAccessory(scene, bot_radius);
+        y_bot.parent = bot;
+        bot.material = green;
+        bot.parent = pipe;
+    }
+
+    //Create the top cylinder so it has the remaining height and center it its length from the top
+    var top = BABYLON.MeshBuilder.CreateCylinder("c1_top", { height: top_radius * 2, diameter: 2 }, scene);
+    top.position = new BABYLON.Vector3(0, MAX_HEIGHT - top_radius, 0);
+    var y_top = createAccessory(scene, -top_radius);
+    y_top.parent = top;
+
     top.parent = pipe;
+    top.material = green;
+    pipe.position = new BABYLON.Vector3(12, 0, 0);
 
     //Set the colors and add our pipe to our array
-    bot.material = green;
-    top.material = green;
+
 
     pipes.push(pipe);
 }
