@@ -5,8 +5,8 @@ Hello! Welcome to Intro to Game Programming! This is where we will post material
 
 # LINKS FOR TODAY'S CLASS!!!!
 ### Main Excercise:
+- LPP Registration Form: https://forms.gle/kXLLsGhvsKSjwirq8
 - Blank Playground: https://playground.babylonjs.com/#3EO62V#1
-- Trevor Phillips Playground: https://playground.babylonjs.com/#3EO62V#7
 - Assets Directory: https://raw.githubusercontent.com/nrush23/game_programming/main/week1/assets/
 
 ### Extra models:
@@ -42,6 +42,7 @@ Hello! Welcome to Intro to Game Programming! This is where we will post material
 ### Week 1
 - Introduction, favorite games, hello world
 - Overview of Unity, Unreal, Babylon.js, 3D modelling, material basics
+- Trevor Phillips Playground: https://playground.babylonjs.com/#3EO62V#7
 
 ### Week 2
 - Trevor Phillips, Glow Layer, Color Changes, Babylon.js basics
