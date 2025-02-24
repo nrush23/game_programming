@@ -9,7 +9,7 @@ Hello! Welcome to Intro to Game Programming! This is where we will post material
 - Blank Playground: https://playground.babylonjs.com/#3EO62V#1
 - Assets Directory: https://raw.githubusercontent.com/nrush23/game_programming/main/week1/assets/
 
-### Extra models:
+# Models:
 - Trevor Phillips: trevor_phillips.glb
 - Golden Patty: golden_patty.glb
 - Raiden: raiden.glb
