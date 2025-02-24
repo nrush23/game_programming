@@ -6,6 +6,7 @@ Hello! Welcome to Intro to Game Programming! This is where we will post material
 # LINKS FOR TODAY'S CLASS!!!!
 ### Main Excercise:
 - LPP Registration Form: https://forms.gle/kXLLsGhvsKSjwirq8
+- Game Demo: https://playground.babylonjs.com/#4YOZ3J
 - Blank Playground: https://playground.babylonjs.com/#3EO62V#1
 - Assets Directory: https://raw.githubusercontent.com/nrush23/game_programming/main/week1/assets/
 
