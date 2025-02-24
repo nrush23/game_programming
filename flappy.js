@@ -6,6 +6,7 @@ var green;
 var red;
 var score = 0;
 var best = 0;
+var pipe_count = 0;
 
 var PLAY = true;
 const MIN_HEIGHT = -7.5;
@@ -20,10 +21,6 @@ var createScene = function () {
 
     createPhysics(scene);
     initialize(scene);
-    setupInput(scene);
-
-    // gameLogic(scene);
-    // createPipe(scene, 2);
     return scene;
 };
 
@@ -113,18 +110,6 @@ function createPhysics(scene) {
     roof.isVisible = false;
 }
 
-function setupInput(scene) {
-    scene.actionManager = new BABYLON.ActionManager(scene);
-
-    scene.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnKeyDownTrigger, (evt) => {
-        inputMap[evt.sourceEvent.key] = evt.sourceEvent.type == "keydown";
-    }));
-
-    scene.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnKeyUpTrigger, (evt) => {
-        inputMap[evt.sourceEvent.key] = evt.sourceEvent.type == "keydown";
-    }));
-}
-
 function gameLogic(scene) {
     scene.onPointerDown = function () {
         sphere.body.applyImpulse(new BABYLON.Vector3(0, 1.5, 0), sphere.absolutePosition);
@@ -135,18 +120,21 @@ function gameLogic(scene) {
                 let pipe = pipes[i];
                 pipe.position.x -= 0.02;
 
-                pipe.getChildMeshes().forEach(function (childMesh) {
-                    if (sphere.intersectsMesh(childMesh)) {
-                        console.log("Imported mesh intersects with " + childMesh.name);
-                    }
-                });
-
                 if (pipe.position.x < -15) {
-                    pipe.dispose()
                     pipes.splice(i, 1);
+                    pipe.dispose()
                     score += 1
                     console.log(score)
                 }
+
+                pipe.getChildMeshes().forEach(function (childMesh) {
+                    if (sphere.intersectsMesh(childMesh)) {
+                        console.log("Imported mesh intersects with " + childMesh.name);
+                        PLAY = false;
+                        console.log(pipes);
+                        return;
+                    }
+                });
             }
         }
     });
@@ -163,7 +151,9 @@ function createPipe(scene, height) {
     const top_radius = (MAX_HEIGHT + Math.abs(MIN_HEIGHT) - height - GAP_WIDTH) / 2;
 
     //Now make a transform node to hold all components
-    var pipe = new BABYLON.TransformNode("p1", scene);
+    var pipe = new BABYLON.TransformNode("p" + pipe_count, scene);
+    pipe_count += 1;
+    console.log(pipe_count);
 
     //Don't make the bottom if the height is too small
     if (height > GAP_WIDTH) {
