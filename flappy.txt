@@ -6,10 +6,12 @@ var green;
 var red;
 var score = 0;
 var best = 0;
+
+var PLAY = true;
 const MIN_HEIGHT = -7.5;
 const MAX_HEIGHT = 10;
 const GAP_WIDTH = 3;
-var SPAWN_TIME = 4000;
+var SPAWN_TIME = 3000;
 
 
 var createScene = function () {
@@ -46,24 +48,25 @@ function createPhysics(scene) {
     // Create our sphere and ground
     scene.onNewMeshAddedObservable.add((mesh) => {
         mesh.renderOutline = true;
-        // mesh.outlineWidth = 0.0005; // Optional: adjust outline thickness
         mesh.outlineColor = BABYLON.Color3.Black();
     });
-    // BABYLON.SceneLoader.ImportMesh("", "https://raw.githubusercontent.com/nrush23/game_programming/main/assets/", "flappy_fix3.glb");
+
     const promise = BABYLON.SceneLoader.ImportMeshAsync("", "https://raw.githubusercontent.com/nrush23/game_programming/main/assets/", "flappy_fix3.glb", scene);
     promise.then((result) => {
+
         const importedMesh = result.meshes[0];
         importedMesh.rotationQuaternion = BABYLON.Quaternion.FromEulerAngles(Math.PI, Math.PI / 2, 0);
         importedMesh.position = new BABYLON.Vector3(-6, 4, 0);
-        const boundingInfo = importedMesh.getBoundingInfo();
-        const radius = boundingInfo.boundingSphere.radiusWorld;
+        importedMesh.computeWorldMatrix(true);
+
+        const halfExtents = new BABYLON.Vector3(2, 1, 1);
+        const center = BABYLON.Vector3.Zero();
+        const rotation = BABYLON.Quaternion.Identity();
 
         importedMesh.body = new BABYLON.PhysicsBody(importedMesh, BABYLON.PhysicsMotionType.DYNAMIC, false, scene);
         importedMesh.body.setMassProperties({ mass: 0.6 });
 
-        const importedShape = new BABYLON.PhysicsShapeSphere(new BABYLON.Vector3(0, 0, 0), radius, scene);
-        importedShape.material = { friction: 1, restitution: 0 };
-
+        const importedShape = new BABYLON.PhysicsShapeBox(center, rotation, halfExtents, scene);
         importedMesh.body.shape = importedShape;
         sphere = importedMesh;
 
@@ -79,9 +82,16 @@ function createPhysics(scene) {
                 let targetQuaternion = BABYLON.Quaternion.FromEulerAngles(dipAngle, Math.PI / 2, 0);
 
                 sphere.body.transformNode.rotationQuaternion = targetQuaternion;
+
+                const plugin = scene.getPhysicsEngine().getPhysicsPlugin();
+                plugin._hknp.HP_Body_SetOrientation(sphere.body._pluginData.hpBodyId, [
+                    targetQuaternion.x,
+                    targetQuaternion.y,
+                    targetQuaternion.z,
+                    targetQuaternion.w
+                ]);
             }
         });
-
     });
 
     var ground = BABYLON.MeshBuilder.CreateGround("ground", { width: 30, height: 10 }, scene);
@@ -118,15 +128,17 @@ function gameLogic(scene) {
         sphere.body.applyImpulse(new BABYLON.Vector3(0, 1.5, 0), sphere.absolutePosition);
     }
     scene.onBeforeRenderObservable.add(() => {
-        for (let i = pipes.length - 1; i >= 0; i--) {
-            let pipe = pipes[i];
-            pipe.position.x -= 0.02;
+        if (PLAY) {
+            for (let i = pipes.length - 1; i >= 0; i--) {
+                let pipe = pipes[i];
+                pipe.position.x -= 0.02;
 
-            if (pipe.position.x < -15) {
-                pipe.dispose()
-                pipes.splice(i, 1);
-                score += 1
-                console.log(score)
+                if (pipe.position.x < -15) {
+                    pipe.dispose()
+                    pipes.splice(i, 1);
+                    score += 1
+                    console.log(score)
+                }
             }
         }
     });
