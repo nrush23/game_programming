@@ -22,8 +22,8 @@ var createScene = function () {
     initialize(scene);
     setupInput(scene);
 
-    gameLogic(scene);
-    createPipe(scene, 2);
+    // gameLogic(scene);
+    // createPipe(scene, 2);
     return scene;
 };
 
@@ -92,6 +92,8 @@ function createPhysics(scene) {
                 ]);
             }
         });
+
+        gameLogic(scene);
     });
 
     var ground = BABYLON.MeshBuilder.CreateGround("ground", { width: 30, height: 10 }, scene);
@@ -132,6 +134,12 @@ function gameLogic(scene) {
             for (let i = pipes.length - 1; i >= 0; i--) {
                 let pipe = pipes[i];
                 pipe.position.x -= 0.02;
+
+                pipe.getChildMeshes().forEach(function (childMesh) {
+                    if (sphere.intersectsMesh(childMesh)) {
+                        console.log("Imported mesh intersects with " + childMesh.name);
+                    }
+                });
 
                 if (pipe.position.x < -15) {
                     pipe.dispose()
