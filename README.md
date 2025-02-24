@@ -49,7 +49,7 @@ Hello! Welcome to Intro to Game Programming! This is where we will post material
 - More import model things, music, cube introduction, transforms
 
 ### Week 3
-- Import a character, make it walk around a map (Flappy Bird)
+- Import a character, make it walk around a map
   
 # Contact information
 
