@@ -5,7 +5,7 @@ Hello! Welcome to Intro to Game Programming! This is where we will post material
 
 # LINKS FOR TODAY'S CLASS!!!!
 ### Main Excercise:
-- Operation 414: https://docs.google.com/document/d/1w0Cz4PopsR2Ajfa7XXK4Rrm0hMvyj6RKuLDNblMgtdo/edit?usp=sharing
+- PROJECT A.N.T: https://playground.babylonjs.com/#C8KY7T
 - Cicada Clues: https://connortumbleson.com/2019/09/30/the-cicada-3301-mystery/
 -  LPP Registration Form: https://forms.gle/kXLLsGhvsKSjwirq8
 
