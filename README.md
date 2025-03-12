@@ -5,10 +5,12 @@ Hello! Welcome to Intro to Game Programming! This is where we will post material
 
 # LINKS FOR TODAY'S CLASS!!!!
 ### Main Excercise:
-- LPP Registration Form: https://forms.gle/kXLLsGhvsKSjwirq8
-- Game Demo: https://playground.babylonjs.com/#4YOZ3J
-- Blank Playground: https://playground.babylonjs.com/#3EO62V#1
-- Assets Directory: https://raw.githubusercontent.com/nrush23/game_programming/main/week1/assets/
+- My beat: https://tinyurl.com/s5k3df2h
+- Blank BeepBox: https://www.beepbox.co/
+- PROJECT A.N.T: https://playground.babylonjs.com/#C8KY7T
+- Cicada Clues: https://connortumbleson.com/2019/09/30/the-cicada-3301-mystery/
+-  LPP Registration Form: https://forms.gle/kXLLsGhvsKSjwirq8
+
 
 # Models:
 - Trevor Phillips: trevor_phillips.glb
@@ -29,6 +31,9 @@ Hello! Welcome to Intro to Game Programming! This is where we will post material
 - Allosaurus: allosaurus.glb
 - Raptor: raptor.glb
 - Tricera: tricera.glb
+
+- Blank Playground: https://playground.babylonjs.com/#3EO62V#1
+- Assets Directory: https://raw.githubusercontent.com/nrush23/game_programming/main/week1/assets/
 
 # Objectives
 
@@ -51,6 +56,7 @@ Hello! Welcome to Intro to Game Programming! This is where we will post material
 
 ### Week 3
 - Import a character, make it walk around a map
+- Flappy Bird Playground: https://playground.babylonjs.com/#4YOZ3
   
 # Contact information
 
