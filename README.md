@@ -13,6 +13,7 @@ Hello! Welcome to Intro to Game Programming! This is where we will post material
 # LINKS FOR TODAY'S CLASS!!!!
 ### Main Excercise:
 - NYC Archive: https://writlarge.ctl.columbia.edu/view/collection/54/
+- School Wikipedia Page: https://en.wikipedia.org/wiki/Bayard_Rustin_Educational_Complex
 - CapCut: https://www.capcut.com/templates/web-7254043054582091010?
 - Blank BeepBox: https://www.beepbox.co/
 - PROJECT A.N.T: https://playground.babylonjs.com/#C8KY7T
