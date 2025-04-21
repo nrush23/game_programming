@@ -3,12 +3,10 @@
 
 Hello! Welcome to Intro to Game Programming! This is where we will post materials and excercises, if the format changes at all I'll let you guys know.
 # Instructions for Today
-- Download Google Drive on your phone if you don't have it
-- Sign in with your school email
-- Upload your photos
 - Go to CapCut browser on your Chromebook
 - Make an account with your school email
-- Create your first video
+- Browse through the videos in the Videos folder
+- Create your first video (30s)
   
 # LINKS FOR TODAY'S CLASS!!!!
 ### Main Excercise:
