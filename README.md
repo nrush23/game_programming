@@ -2,10 +2,19 @@
 > Spring 2025 Landmark High School
 
 Hello! Welcome to Intro to Game Programming! This is where we will post materials and excercises, if the format changes at all I'll let you guys know.
-
+# Instructions for Today
+- Download Google Drive on your phone if you don't have it
+- Sign in with your school email
+- Upload your photos
+- Go to CapCut browser on your Chromebook
+- Make an account with your school email
+- Create your first video
+  
 # LINKS FOR TODAY'S CLASS!!!!
 ### Main Excercise:
-- My beat: https://tinyurl.com/s5k3df2h
+- NYC Archive: https://writlarge.ctl.columbia.edu/view/collection/54/
+- School Wikipedia Page: https://en.wikipedia.org/wiki/Bayard_Rustin_Educational_Complex
+- CapCut: https://www.capcut.com/templates/web-7254043054582091010?
 - Blank BeepBox: https://www.beepbox.co/
 - PROJECT A.N.T: https://playground.babylonjs.com/#C8KY7T
 - Cicada Clues: https://connortumbleson.com/2019/09/30/the-cicada-3301-mystery/
