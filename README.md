@@ -3,12 +3,12 @@
 
 Hello! Welcome to Intro to Game Programming! This is where we will post materials and excercises, if the format changes at all I'll let you guys know.
 # Instructions for Today
-- Go to CapCut browser on your Chromebook
-- Make an account with your school email
-- Go to this link: https://downgit.github.io/#/home?url=https:%2F%2Fgithub.com%2Fnrush23%2Fgame_programming%2Ftree%2Fmain%2Fvideos
-- https://github.com/nrush23/game_programming/tree/main/videos
-- Browse through the videos in the Videos folder
-- Create your first video (30s)
+- Go to: https://www.piskelapp.com/p/create/sprite
+- Create your own sprite (at least 12 frames)
+- Click the save image on the right, save as .piskel file
+- Switch to the Export image panel, click PNG and save as a png file
+- In the same panel, on the top left click GIF and download as a .gif also
+- Email me both the files at ncr7500@nyu.edu
   
 # LINKS FOR TODAY'S CLASS!!!!
 ### Main Excercise:
