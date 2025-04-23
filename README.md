@@ -6,6 +6,7 @@ Hello! Welcome to Intro to Game Programming! This is where we will post material
 - Go to: https://www.piskelapp.com/p/create/sprite
 - Create your own sprite (at least 12 frames)
 - Click the save image on the right, save as .piskel file
+- Switch to the Export image panel, click PNG and save as a png file
 - In the same panel, on the top left click GIF and download as a .gif also
 - Email me both the files at ncr7500@nyu.edu
   
