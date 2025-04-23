@@ -5,6 +5,8 @@ Hello! Welcome to Intro to Game Programming! This is where we will post material
 # Instructions for Today
 - Go to CapCut browser on your Chromebook
 - Make an account with your school email
+- Go to this link: https://downgit.github.io/#/home?url=https:%2F%2Fgithub.com%2Fnrush23%2Fgame_programming%2Ftree%2Fmain%2Fvideos
+- https://github.com/nrush23/game_programming/tree/main/videos
 - Browse through the videos in the Videos folder
 - Create your first video (30s)
   
