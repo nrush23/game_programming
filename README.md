@@ -3,6 +3,7 @@
 
 Hello! Welcome to Intro to Game Programming! This is where we will post materials and excercises, if the format changes at all I'll let you guys know.
 # Instructions for Today
+- https://docs.google.com/forms/d/e/1FAIpQLSfy-4Act6krEcZDoSWfnCiSwzFfl9we2Joxbdkkivt9wk1JwA/viewform?pli=1
 - Marbles: https://docs.google.com/presentation/d/1Y_41LklW5oVFxq6RbEiK6iySmgSz1vByWe_5dMuahjY/edit?usp=sharing
 - Go to: https://www.piskelapp.com/p/create/sprite
 - Create your own sprite (at least 12 frames)
